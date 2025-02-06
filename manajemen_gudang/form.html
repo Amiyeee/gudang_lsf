@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input</title>
+    <link rel="stylesheet" href="css/form.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Form Input</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="lpb.html">LPB</a></li>
+            <li><a href="data_stock.html">Data Stock</a></li>
+            <li><a href="good_issue.html">Good Issue</a></li>
+            <li><a href="form.html">Form</a></li>
+        </ul>
+    </nav>
+    </header>
+    <h1>Pilih Form Input</h1>
+    <button onclick="showForm('dataStockForm')">Data Stock</button>
+    <button onclick="showForm('goodIssueForm')">Good Issue</button>
+    <button onclick="showForm('lpbForm')">LPB</button>
+
+    <!--Form DATA STOCK-->
+    <div id="forms-container">
+        <form id="dataStockForm" class="hidden">
+            <h2>Data Stock</h2>
+            <div class="mb-3">
+                <label for="card_uid" class="form-label">Scan RFID Card</label>
+                <input type="text" name="card_uid" class="form-control" placeholder="Scan your card here..." autofocus required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="rcvd_date" class="form-label">RCVD Date</label>
+                <input type="date" name="rcvd_date" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="item_code" class="form-label">Item Code</label>
+                <input type="text" name="item_code" placeholder="Item Code" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="item_name" class="form-label">Item Name</label>
+                <input type="text" name="item_name" placeholder="Item Name" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="free_text" class="form-label">Free Text</label>
+                <input type="text" name="free_text" placeholder="Free Text">
+            </div>
+        
+            <div class="mb-3">
+                <label for="qty_rcvd" class="form-label">Qty Received</label>
+                <input type="number" name="qty_rcvd" placeholder="Qty Received" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="unit" class="form-label">Unit</label>
+                <input type="text" name="unit" placeholder="Unit" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="po_no" class="form-label">PO No</label>
+                <input type="text" name="po_no" placeholder="PO No" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="apply_to" class="form-label">Apply To</label>
+                <input type="text" name="apply_to" placeholder="Apply To" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="doc_no" class="form-label">Doc. No</label>
+                <input type="text" name="doc_no" placeholder="Doc. No" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="from" class="form-label">From</label>
+                <input type="text" name="from" placeholder="From" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="wbs_code" class="form-label">WBS Code</label>
+                <input type="text" name="wbs_code" placeholder="WBS Code" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" name="location" placeholder="Location" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="remark" class="form-label">Remark</label>
+                <input type="text" name="remark" placeholder="Remark" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <input type="text" name="status" placeholder="Status" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="qty_issued" class="form-label">Qty Issued</label>
+                <input type="number" name="qty_issued" placeholder="Qty Issued" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="balance" class="form-label">Balance</label>
+                <input type="number" name="balance" placeholder="Balance" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="pic" class="form-label">PIC</label>
+                <input type="text" name="pic" placeholder="PIC" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="whs" class="form-label">WHS</label>
+                <input type="text" name="whs" placeholder="WHS" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="ket" class="form-label">Keterangan</label>
+                <input type="text" name="ket" placeholder="Keterangan" required>
+            </div>
+        
+            <button onclick="addData()" class="btn btn-primary">Submit</button>
+        </form>
+
+        <!--Form GOOD ISSUE-->
+        <form id="goodIssueForm" class="hidden">
+            <h2>Good Issue</h2>
+
+            <div class="mb-3">
+                <label for="card_uid" class="form-label">Scan RFID Card</label>
+                <input type="text" name="card_uid" class="form-control" placeholder="Scan your card here..." autofocus required>
+            </div>
+
+            <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" name="date" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="item_code" class="form-label">Item Code</label>
+                <input type="text" name="item_code" placeholder="Item Code" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="item_name" class="form-label">Item Name</label>
+                <input type="text" name="item_name" placeholder="Item Name" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="qty" class="form-label">Qty</label>
+                <input type="number" name="qty" placeholder="Qty" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="unit" class="form-label">Unit</label>
+                <input type="text" name="unit" placeholder="Unit" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="pc_no" class="form-label">PC No</label>
+                <input type="text" name="pc_no" placeholder="PC No" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="bpm" class="form-label">BPM</label>
+                <input type="text" name="bpm" placeholder="BPM" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="rcvd_by" class="form-label">Received By</label>
+                <input type="text" name="rcvd_by" placeholder="Received By" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="foreman_group" class="form-label">Foreman / Group</label>
+                <input type="text" name="foreman_group" placeholder="Foreman / Group" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="freetext" class="form-label">Free Text</label>
+                <input type="text" name="freetext" placeholder="Free Text">
+            </div>
+        
+            <div class="mb-3">
+                <label for="remarks" class="form-label">Remarks</label>
+                <input type="text" name="remarks" placeholder="Remarks" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <input type="text" name="status" placeholder="Status" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="wbs_code" class="form-label">WBS Code</label>
+                <input type="text" name="wbs_code" placeholder="WBS Code" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="no_gi_itr" class="form-label">No.GI / ITR</label>
+                <input type="text" name="no_gi_itr" placeholder="No.GI / ITR" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="posting_date" class="form-label">Posting Date</label>
+                <input type="date" name="posting_date" placeholder="Posting Date" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="whse" class="form-label">Whse</label>
+                <input type="text" name="whse" placeholder="Whse" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="account_code" class="form-label">Account Code</label>
+                <input type="text" name="account_code" placeholder="Account Code" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="project" class="form-label">Project</label>
+                <input type="text" name="project" placeholder="Project" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="fase" class="form-label">Fase</label>
+                <input type="text" name="fase" placeholder="Fase" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="lokasi" class="form-label">Lokasi</label>
+                <input type="text" name="lokasi" placeholder="Lokasi" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="dep" class="form-label">Dep</label>
+                <input type="text" name="dep" placeholder="Dep" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="jenis_pengerjaan" class="form-label">Jenis Pengerjaan</label>
+                <input type="text" name="jenis_pengerjaan" placeholder="Jenis Pengerjaan" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="keterangan" class="form-label">Keterangan</label>
+                <input type="text" name="keterangan" placeholder="Keterangan" required>
+            </div>
+        
+            <button onclick="addData()" class="btn btn-primary">Submit</button>
+        </form>
+        
+
+        <!--Form LPB-->
+        <form id="lpbForm" class="hidden">
+            <h2>LPB</h2>
+            <div class="mb-3">
+                <label for="card_uid" class="form-label">Scan RFID Card</label>
+                <input type="text" name="card_uid" class="form-control" placeholder="Scan your card here..." autofocus required>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Pengiriman</label>
+                <input type="text" id="location" name="location" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="item_code" class="form-label">Item Code</label>
+                <input type="text" id="item_code" name="item_code" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="item_name" class="form-label">Item Name</label>
+                <input type="text" id="item_name" name="item_name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="ket" class="form-label">Ket</label>
+                <input type="text" id="ket" name="ket" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="text" id="quantity" name="quantity" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="unit" class="form-label">Unit</label>
+                <input type="text" id="unit" name="unit" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="po_number" class="form-label">PO Number</label>
+                <input type="text" id="po_number" name="po_number" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="project_code" class="form-label">Project Code</label>
+                <input type="text" id="project_code" name="project_code" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="project_name" class="form-label">Project Name</label>
+                <input type="text" id="project_name" name="project_name" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="do_no" class="form-label">DO No</label>
+                <input type="text" id="do_no" name="do_no" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="shipment_no" class="form-label">Shipment No</label>
+                <input type="text" id="shipment_no" name="shipment_no" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="wbs_code" class="form-label">WBS Code</label>
+                <input type="text" id="wbs_code" name="wbs_code" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="prpo_it" class="form-label">PRPO IT</label>
+                <input type="text" id="prpo_it" name="prpo_it" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="it" class="form-label">IT</label>
+                <input type="text" id="it" name="it" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="whs" class="form-label">WHS</label>
+                <input type="text" id="whs" name="whs" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="remarks" class="form-label">Remarks</label>
+                <input type="text" id="remarks" name="remarks" class="form-control">
+            </div>
+            <button onclick="addData()" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function showForm(formId) {
+            document.querySelectorAll("form").forEach(form => form.classList.add("hidden"));
+            document.getElementById(formId).classList.remove("hidden");
+        }
+    </script>
+
+    <style>
+        .hidden { display: none; }
+    </style>
+</body>
+</html>
