@@ -28,12 +28,7 @@
     <!--Form DATA STOCK-->
     <div id="forms-container">
         <form id="dataStockForm" class="hidden">
-            <h2>Data Stock</h2>
-            <div class="mb-3">
-                <label for="card_uid" class="form-label">Scan RFID Card</label>
-                <input type="text" name="card_uid" class="form-control" placeholder="Scan your card here..." autofocus required>
-            </div>
-        
+            <h2>Data Stock</h2>      
             <div class="mb-3">
                 <label for="rcvd_date" class="form-label">RCVD Date</label>
                 <input type="date" name="rcvd_date" required>
@@ -73,14 +68,24 @@
                 <label for="apply_to" class="form-label">Apply To</label>
                 <input type="text" name="apply_to" placeholder="Apply To" required>
             </div>
-        
+
+            <div class="mb-3">
+                <label for="apply_to" class="form-label">Pc Number</label>
+                <input type="text" name="apply_to" placeholder="Apply To" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="apply_to" class="form-label">Project Name</label>
+                <input type="text" name="apply_to" placeholder="Apply To" required>
+            </div>
+            
             <div class="mb-3">
                 <label for="doc_no" class="form-label">Doc. No</label>
                 <input type="text" name="doc_no" placeholder="Doc. No" required>
             </div>
         
             <div class="mb-3">
-                <label for="from" class="form-label">From</label>
+                <label for="from" class="form-label">Source</label>
                 <input type="text" name="from" placeholder="From" required>
             </div>
         
@@ -135,17 +140,16 @@
         <!--Form GOOD ISSUE-->
         <form id="goodIssueForm" class="hidden">
             <h2>Good Issue</h2>
-
-            <div class="mb-3">
-                <label for="card_uid" class="form-label">Scan RFID Card</label>
-                <input type="text" name="card_uid" class="form-control" placeholder="Scan your card here..." autofocus required>
-            </div>
-
             <div class="mb-3">
                 <label for="date" class="form-label">Date</label>
                 <input type="date" name="date" required>
             </div>
-        
+            
+            <div class="mb-3">
+                <label for="card_uid" class="form-label">RFID Card</label>
+                <input type="text" name="card_uid" class="form-control" placeholder="Scan your card here..." autofocus required>
+            </div>
+                   
             <div class="mb-3">
                 <label for="item_code" class="form-label">Item Code</label>
                 <input type="text" name="item_code" placeholder="Item Code" required>
@@ -230,12 +234,7 @@
                 <label for="project" class="form-label">Project</label>
                 <input type="text" name="project" placeholder="Project" required>
             </div>
-        
-            <div class="mb-3">
-                <label for="fase" class="form-label">Fase</label>
-                <input type="text" name="fase" placeholder="Fase" required>
-            </div>
-        
+                           
             <div class="mb-3">
                 <label for="lokasi" class="form-label">Lokasi</label>
                 <input type="text" name="lokasi" placeholder="Lokasi" required>
@@ -263,12 +262,9 @@
         <!--Form LPB-->
         <form id="lpbForm" class="hidden">
             <h2>LPB</h2>
+            
             <div class="mb-3">
-                <label for="card_uid" class="form-label">Scan RFID Card</label>
-                <input type="text" name="card_uid" class="form-control" placeholder="Scan your card here..." autofocus required>
-            </div>
-            <div class="mb-3">
-                <label for="location" class="form-label">Pengiriman</label>
+                <label for="location" class="form-label">No Pengiriman</label>
                 <input type="text" id="location" name="location" class="form-control">
             </div>
             <div class="mb-3">
