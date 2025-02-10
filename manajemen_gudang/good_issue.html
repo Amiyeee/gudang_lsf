@@ -1,3 +1,11 @@
+<?php
+require_once 'db_connect.php';
+
+$pdo = Database::connect();
+
+$query = "SELECT * FROM good_issue"; // Query untuk mengambil data dari tabel good_issue
+$stmt = $pdo->query($query);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +20,11 @@
         <h1>Good Issue</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="lpb.html">LPB</a></li>
-                <li><a href="data_stock.html">Data Stock</a></li>
-                <li><a href="good_issue.html">Good Issue</a></li>
-                <li><a href="form.html">Form</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="lpb.php">LPB</a></li>
+                <li><a href="data_stock.php">Data Stock</a></li>
+                <li><a href="good_issue.php">Good Issue</a></li>
+                <li><a href="form.php">Form</a></li>
             </ul>
         </nav>
     </header>
@@ -28,6 +36,7 @@
                 <thead>
                     <tr>
                         <th>DATE</th>
+                        <th>RFID</th>
                         <th>ITEM CODE</th>
                         <th>ITEM NAME</th>
                         <th>QTY</th>
@@ -39,23 +48,46 @@
                         <th>FREETEXT</th>
                         <th>REMAKS</th>
                         <th>Status</th>
+                        <th>WBS Code</th>
+                        <th>No GI ITR</th>
+                        <th>Posting Date</th>
+                        <th>Whse</th>
+                        <th>Account Code</th>
+                        <th>Project</th>
+                        <th>Location</th>
+                        <th>Dep</th>
+                        <th>Jenis Pengerjaan</th>
+                        <th>Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>2025-02-06</td>
-                        <td>54321</td>
-                        <td>Barang B</td>
-                        <td>50</td>
-                        <td>pcs</td>
-                        <td>PC001</td>
-                        <td>BPM01</td>
-                        <td>John Doe</td>
-                        <td>Group A</td>
-                        <td>-</td>
-                        <td>OK</td>
-                        <td>Complete</td>
-                    </tr>
+                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                        <tr>
+                            <td><?php echo date("Y-m-d H:i:s", strtotime($row['date']));  ?></td>
+                            <td><?php echo htmlspecialchars($row['card_uid']); ?></td>
+                            <td><?php echo htmlspecialchars($row['item_code']); ?></td>
+                            <td><?php echo htmlspecialchars($row['item_name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['qty']); ?></td>
+                            <td><?php echo htmlspecialchars($row['unit']); ?></td>
+                            <td><?php echo htmlspecialchars($row['pc_no']); ?></td>
+                            <td><?php echo htmlspecialchars($row['bpm']); ?></td>
+                            <td><?php echo htmlspecialchars($row['rcvd_by']); ?></td>
+                            <td><?php echo htmlspecialchars($row['foreman_group']); ?></td>
+                            <td><?php echo htmlspecialchars($row['freetext']); ?></td>
+                            <td><?php echo htmlspecialchars($row['remarks']); ?></td>
+                            <td><?php echo htmlspecialchars($row['status']); ?></td>
+                            <td><?php echo htmlspecialchars($row['wbs_code']); ?></td>
+                            <td><?php echo htmlspecialchars($row['no_gi_itr']); ?></td>
+                            <td><?php echo htmlspecialchars($row['posting_date']); ?></td>
+                            <td><?php echo htmlspecialchars($row['whse']); ?></td>
+                            <td><?php echo htmlspecialchars($row['account_code']); ?></td>
+                            <td><?php echo htmlspecialchars($row['project']); ?></td>
+                            <td><?php echo htmlspecialchars($row['location']); ?></td>
+                            <td><?php echo htmlspecialchars($row['dep']); ?></td>
+                            <td><?php echo htmlspecialchars($row['jenis_pengerjaan']); ?></td>
+                            <td><?php echo htmlspecialchars($row['keterangan']); ?></td>
+                        </tr>
+                    <?php endwhile; ?>
                 </tbody>
             </table>
             </div>
