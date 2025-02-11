@@ -12,150 +12,14 @@ try {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Issue</title>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-}
-
-header {
-    background-color: #007BFF;
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #0056b3;
-}
-
-nav ul li {
-    margin: 0 10px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #f1f1f1;
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-table th {
-    background-color: #007BFF;
-    color: white;
-}
-
-/* Untuk membuat tabel dengan header tetap */
-.table-container {
-    overflow-x: auto; /* Mengaktifkan scroll horizontal */
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0;
-    overflow: hidden;
-}
-
-table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-table th {
-    background-color: #007BFF;
-    color: white;
-    position: sticky;
-    top: 0; /* Header tetap di atas saat scroll */
-    z-index: 1;
-}
-
-.table-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-.table-container::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
-}
-
-.table-container::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-}
-
-/* Gaya untuk tombol */
-.button-container {
-    display: flex;
-    justify-content: center; /* Tengahkan tombol secara horizontal */
-    margin: 20px 0; /* Jarak atas dan bawah */
-}
-
-.button {
-    display: inline-block;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    background-color: #007bff; /* Warna biru yang menarik */
-    border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.button:hover {
-    background-color: #0056b3; /* Warna lebih gelap saat hover */
-    transform: translateY(-2px);
-}
-
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <header>
         <h1>Good Issue</h1>
@@ -172,10 +36,6 @@ table th {
     <main>
         <section id="content">
             <h2>Good Issue</h2>
-            <div class="button-container">
-                <!-- Tombol untuk membuka halaman detail pemilik RFID -->
-                <a href="rfid_owner.php" class="button">Lihat Pemilik RFID</a>
-            </div>
             <div class="table-container">
                 <table>
                     <thead>
