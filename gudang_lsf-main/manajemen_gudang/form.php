@@ -21,16 +21,29 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
     <link rel="stylesheet" href="form.css">
     <script src="script.js" defer></script>
 </head>
-<script>
-        function updateData() {
-            fetch('form.php')
-                .then(response => response.text())
-                .then(data => {
-                    document.documentElement.innerHTML = data;
-                });
-        }
-        setInterval(updateData, 2000); // Update every 2 seconds
-    </script>
+<script type="text/javascript">
+	let json_data = '';
+	let iter_array = 0;
+	let array_data = [];
+
+	async function updateDataE(){
+
+		let x = await fetch('form.php');
+		json_data = await x.text();
+		const json_obj = JSON.parse(json_data);
+
+		while(iter_array < 3){
+
+			array_data[iter_array] = json_obj[String(iter_array)];
+
+			iter_array++;
+		}
+        // Pasang data dari array_data
+		//document.getElementById("tabel").innerHTML = array_data[0];
+	}
+    setInterval(updateDataE, 2000);
+	//updateDataE();
+</script>
 <body>
     <header>
         <h1>Form Input</h1>
