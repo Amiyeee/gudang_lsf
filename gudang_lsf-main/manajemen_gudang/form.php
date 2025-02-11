@@ -1,3 +1,16 @@
+<?php
+require_once 'UIDContainer.php'; 
+require_once 'db_connect.php'; 
+
+$pdo = Database::connect(); // Gunakan koneksi PDO dari class Database
+
+$UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,10 +18,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Input</title>
-    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="form.css">
     <script src="script.js" defer></script>
 </head>
-
+<script>
+        function updateData() {
+            fetch('form.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.documentElement.innerHTML = data;
+                });
+        }
+        setInterval(updateData, 2000); // Update every 2 seconds
+    </script>
 <body>
     <header>
         <h1>Form Input</h1>
@@ -38,15 +60,59 @@
             <!-- Tombol untuk membuka halaman detail pemilik RFID -->
             <a href="#" class="button" id="showDetailsButton">Lihat Pemilik RFID</a>
         </div>
+
         <!-- Data Pemilik RFID -->
         <section id="rfid-details" class="hidden">
-            <h2>Data Pemilik</h2>
-            <p><strong>ID:</strong> 12345</p>
-            <p><strong>Nama:</strong> Ali</p>
-            <p><strong>Jabatan:</strong> Staff Gudang</p>
-            <p><strong>No HP:</strong> 08123456789</p>
-            <p><strong>Alamat:</strong> Jl. Merdeka No. 1</p>
+                    <table width="652" border="0" align="center" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td class="lf">Card UID</td>
+                            <td><b>:</b></td>
+                            <td><?= htmlspecialchars($UIDresult); ?></td>
+                        </tr>
+                        <?php
+                        if (!empty($UIDresult)) {
+                            $pdo = Database::connect();
+                            $query = "SELECT * FROM biodata WHERE card_uid = :card_uid";
+                            $stmt = $pdo->prepare($query);
+                            $stmt->bindParam(':card_uid', $UIDresult, PDO::PARAM_STR);
+                            $stmt->execute();
+                            $matchedData = $stmt->fetch(PDO::FETCH_ASSOC);
+                            Database::disconnect();
+                        ?>
+                        <?php if ($matchedData): ?>
+                            <tr>
+                                <td class="lf">Name</td>
+                                <td><b>:</b></td>
+                                <td><?= htmlspecialchars($matchedData['nama'] ?? 'N/A'); ?></td>
+                            </tr>
+                            <tr>
+                                <td class="lf">Jabatan</td>
+                                <td><b>:</b></td>
+                                <td><?= htmlspecialchars($matchedData['jabatan'] ?? 'N/A'); ?></td>
+                            </tr>
+                            <tr>
+                                <td class="lf">Alamat</td>
+                                <td><b>:</b></td>
+                                <td><?= htmlspecialchars($matchedData['alamat'] ?? 'N/A'); ?></td>
+                            </tr>
+                            <tr>
+                                <td class="lf">No. Hp</td>
+                                <td><b>:</b></td>
+                                <td><?= htmlspecialchars($matchedData['no_hp'] ?? 'N/A'); ?></td>
+                            </tr>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="3" align="center">No matching data found in database.</td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php } else { ?>
+                        <tr>
+                            <td colspan="3" align="center">No RFID scan detected.</td>
+                        </tr>
+                        <?php } ?>
+                    </table>
         </section>
+
         <!--Form DATA STOCK-->
         <div id="forms-container">
             <form action="process.php" method="post" id="dataStockForm" class="hidden">
@@ -356,8 +422,8 @@
                 <h2>Biodata</h2>
 
                 <div class="mb-3">
-                    <label for="rfid_tag" class="form-label">RFID</label>
-                    <input type="text" name="rfid_tag" placeholder="....." required>
+                    <label for="card_uid" class="form-label">RFID</label>
+                    <input type="text" name="card_uid" placeholder="....." required>
                 </div>
 
                 <div class="mb-3">
