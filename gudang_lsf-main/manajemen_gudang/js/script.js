@@ -1,10 +1,6 @@
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Manajemen Gudang loaded successfully!');
-});
-
 document.addEventListener("DOMContentLoaded", function () {
     function handleFormSubmit(formId, tableSelector, storageKey) {
+        console.log(`handleFormSubmit called for ${formId}`);
         document.getElementById(formId).addEventListener("submit", function (event) {
             event.preventDefault();
             let table = document.querySelector(tableSelector + " tbody");
@@ -23,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function loadTableData(tableSelector, storageKey) {
+        console.log(`loadTableData called for ${tableSelector}`);
         let table = document.querySelector(tableSelector + " tbody");
         let storedData = JSON.parse(localStorage.getItem(storageKey)) || [];
         storedData.forEach((values, index) => {
@@ -34,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (document.getElementById("dataStockForm")) {
         handleFormSubmit("dataStockForm", "#dataStockTable", "dataStock");
     }
+    if (document.getElementById("dataToolsForm")) {
+        handleFormSubmit("dataToolsForm", "#dataToolsTable", "dataTools");
+    }
     if (document.getElementById("goodIssueForm")) {
         handleFormSubmit("goodIssueForm", "#goodIssueTable", "goodIssue");
     }
@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
     if (document.getElementById("dataStockTable")) {
         loadTableData("#dataStockTable", "dataStock");
+    }
+    if (document.getElementById("dataToolsTable")) {
+        loadTableData("#dataToolsTable", "dataTools");
     }
     if (document.getElementById("goodIssueTable")) {
         loadTableData("#goodIssueTable", "goodIssue");
