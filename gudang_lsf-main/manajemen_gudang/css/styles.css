@@ -4,6 +4,10 @@ body {
     padding: 0;
     background-color: #f9f9f9;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 header {
@@ -39,15 +43,18 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+h2 {
+    text-align: center;
+}
+
 main {
-    padding: 20px;
+    flex: 1;
 }
 
 footer {
     text-align: center;
     padding: 10px;
     background-color: #f1f1f1;
-    margin-top: 20px;
 }
 
 table {
@@ -139,3 +146,190 @@ table th {
     background-color: #003f7f; /* Warna lebih gelap saat diklik */
     transform: scale(0.95);
 }
+
+/* upload */
+.upload-container, .success-box {
+    width: 350px;
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.upload-box {
+    border: 2px dashed #ccc;
+    padding: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+.upload-box:hover {
+    border-color: #4F46E5;
+    background-color: #f3f3ff;
+}
+
+.upload-box p {
+    margin-top: 10px;
+    color: #555;
+    font-size: 14px;
+}
+
+.upload-box a {
+    color: #4F46E5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.loading {
+    display: none;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.loading span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #4F46E5;
+    margin: 0 2px;
+    border-radius: 50%;
+    animation: blink 1.4s infinite ease-in-out both;
+}
+
+.loading span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+
+#status {
+    margin-top: 15px;
+    font-size: 14px;
+    color: green;
+    font-weight: bold;
+}
+
+.success-box {
+    display: none;
+    text-align: center;
+}
+
+.success-box img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.success-box button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4F46E5;
+    color: white;
+    transition: 0.3s;
+}
+
+.success-box button:hover {
+    background-color: #3b38d1;
+}
+
+
+    .hidden {
+        display: none;
+    }
+    
+
+    .upload-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #drop-area {
+        border: 2px dashed #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 10px auto;
+        width: 300px;
+        position: relative;
+    }
+
+    #drop-area.dragover {
+        border-color: #4F46E5;
+        background-color: #f3f3ff;
+    }
+
+    #actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    #actions button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #submitBtn {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #cancelBtn {
+        background-color: #f44336;
+        color: white;
+    }
+
+    #loading {
+        display: none;
+        margin-top: 15px;
+    }
+
+    .success-box {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .success-box img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .success-box button {
+        margin-top: 10px;
+    }
