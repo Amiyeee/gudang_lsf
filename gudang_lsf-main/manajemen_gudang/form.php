@@ -18,32 +18,10 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Input</title>
-    <link rel="stylesheet" href="form.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="css/form.css">
+
 </head>
-<script type="text/javascript">
-	let json_data = '';
-	let iter_array = 0;
-	let array_data = [];
 
-	async function updateDataE(){
-
-		let x = await fetch('form.php');
-		json_data = await x.text();
-		const json_obj = JSON.parse(json_data);
-
-		while(iter_array < 3){
-
-			array_data[iter_array] = json_obj[String(iter_array)];
-
-			iter_array++;
-		}
-        // Pasang data dari array_data
-		//document.getElementById("tabel").innerHTML = array_data[0];
-	}
-    setInterval(updateDataE, 2000);
-	//updateDataE();
-</script>
 <body>
     <header>
         <h1>Form Input</h1>
@@ -52,6 +30,7 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
                 <li><a href="index.php">Home</a></li>
                 <li><a href="lpb.php">LPB</a></li>
                 <li><a href="data_stock.php">Data Stock</a></li>
+                <li><a href="data_tools.php">Data Tools</a></li>
                 <li><a href="good_issue.php">Good Issue</a></li>
                 <li><a href="form.php">Form</a></li>
             </ul>
@@ -64,6 +43,7 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
             <select id="formSelector" class="form-control" onchange="showForm(this.value)">
                 <option value="">-- Pilih Form --</option>
                 <option value="dataStockForm">Data Stock</option>
+                <option value="dataToolsForm">Data Tools</option>
                 <option value="goodIssueForm">Good Issue</option>
                 <option value="lpbForm">LPB</option>
                 <option value="biodataForm">Biodata</option>
@@ -73,59 +53,15 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
             <!-- Tombol untuk membuka halaman detail pemilik RFID -->
             <a href="#" class="button" id="showDetailsButton">Lihat Pemilik RFID</a>
         </div>
-
         <!-- Data Pemilik RFID -->
         <section id="rfid-details" class="hidden">
-                    <table width="652" border="0" align="center" cellpadding="5" cellspacing="0">
-                        <tr>
-                            <td class="lf">Card UID</td>
-                            <td><b>:</b></td>
-                            <td><?= htmlspecialchars($UIDresult); ?></td>
-                        </tr>
-                        <?php
-                        if (!empty($UIDresult)) {
-                            $pdo = Database::connect();
-                            $query = "SELECT * FROM biodata WHERE card_uid = :card_uid";
-                            $stmt = $pdo->prepare($query);
-                            $stmt->bindParam(':card_uid', $UIDresult, PDO::PARAM_STR);
-                            $stmt->execute();
-                            $matchedData = $stmt->fetch(PDO::FETCH_ASSOC);
-                            Database::disconnect();
-                        ?>
-                        <?php if ($matchedData): ?>
-                            <tr>
-                                <td class="lf">Name</td>
-                                <td><b>:</b></td>
-                                <td><?= htmlspecialchars($matchedData['nama'] ?? 'N/A'); ?></td>
-                            </tr>
-                            <tr>
-                                <td class="lf">Jabatan</td>
-                                <td><b>:</b></td>
-                                <td><?= htmlspecialchars($matchedData['jabatan'] ?? 'N/A'); ?></td>
-                            </tr>
-                            <tr>
-                                <td class="lf">Alamat</td>
-                                <td><b>:</b></td>
-                                <td><?= htmlspecialchars($matchedData['alamat'] ?? 'N/A'); ?></td>
-                            </tr>
-                            <tr>
-                                <td class="lf">No. Hp</td>
-                                <td><b>:</b></td>
-                                <td><?= htmlspecialchars($matchedData['no_hp'] ?? 'N/A'); ?></td>
-                            </tr>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="3" align="center">No matching data found in database.</td>
-                            </tr>
-                        <?php endif; ?>
-                        <?php } else { ?>
-                        <tr>
-                            <td colspan="3" align="center">No RFID scan detected.</td>
-                        </tr>
-                        <?php } ?>
-                    </table>
+            <h2>Data Pemilik</h2>
+            <p><strong>ID:</strong> 12345</p>
+            <p><strong>Nama:</strong> Ali</p>
+            <p><strong>Jabatan:</strong> Staff Gudang</p>
+            <p><strong>No HP:</strong> 08123456789</p>
+            <p><strong>Alamat:</strong> Jl. Merdeka No. 1</p>
         </section>
-
         <!--Form DATA STOCK-->
         <div id="forms-container">
             <form action="process.php" method="post" id="dataStockForm" class="hidden">
@@ -238,6 +174,130 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
 
                 <button onclick="addData()" class="btn btn-primary">Submit</button>
             </form>
+
+            <!--Form Data Tools-->
+            <form action="process.php" method="post" id="dataToolsForm" class="hidden">
+                <input type="hidden" name="category" value="data_tools">
+                <h2>Data Tools</h2>
+
+                <div class="mb-3">
+                    <label for="data1" class="form-label">Data 1</label>
+                    <input type="text" name="data1" class="form-control" placeholder="Data 1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="data2" class="form-label">Data 2</label>
+                    <input type="text" name="data2" class="form-control" placeholder="Data 2" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="no" class="form-label">No</label>
+                    <input type="text" name="no" class="form-control" placeholder="No" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tgl_masuk_lsf" class="form-label">TGL MASUK LSF</label>
+                    <input type="date" name="tgl_masuk_lsf" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="durasi_lsf" class="form-label">Durasi di LSF</label>
+                    <input type="text" name="durasi_lsf" class="form-control" placeholder="Durasi di LSF" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nama_alat" class="form-label">NAMA ALAT</label>
+                    <input type="text" name="nama_alat" class="form-control" placeholder="Nama Alat" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="merk_type_size" class="form-label">MERK / TYPE / SIZE</label>
+                    <input type="text" name="merk_type_size" class="form-control" placeholder="Merk / Type / Size" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="kapasitas" class="form-label">CAPASITAS</label>
+                    <input type="text" name="kapasitas" class="form-control" placeholder="Kapasitas" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="code_id" class="form-label">CODE (ID NUMBER)</label>
+                    <input type="text" name="code_id" class="form-control" placeholder="Code (ID Number)" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="serial_no" class="form-label">SERIAL NO.</label>
+                    <input type="text" name="serial_no" class="form-control" placeholder="Serial No." required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="po_no" class="form-label">PO.NO</label>
+                    <input type="text" name="po_no" class="form-control" placeholder="PO.No" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="penerima" class="form-label">PENERIMA</label>
+                    <input type="text" name="penerima" class="form-control" placeholder="Penerima" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="jabatan" class="form-label">JABATAN</label>
+                    <input type="text" name="jabatan" class="form-control" placeholder="Jabatan" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="lokasi_group" class="form-label">LOKASI/GROUP</label>
+                    <input type="text" name="lokasi_group" class="form-control" placeholder="Lokasi/Group" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tgl_pinjam" class="form-label">TGL PINJAM</label>
+                    <input type="date" name="tgl_pinjam" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tgl_service" class="form-label">TGL SERVICE</label>
+                    <input type="date" name="tgl_service" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="kondisi" class="form-label">KONDISI</label>
+                    <input type="text" name="kondisi" class="form-control" placeholder="Kondisi" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="qty" class="form-label">QTY</label>
+                    <input type="number" name="qty" class="form-control" placeholder="Qty" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="satuan" class="form-label">SATUAN</label>
+                    <input type="text" name="satuan" class="form-control" placeholder="Satuan" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="status" class="form-label">STATUS</label>
+                    <input type="text" name="status" class="form-control" placeholder="Status" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="keterangan" class="form-label">KETERANGAN</label>
+                    <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="categories" class="form-label">CATEGORIES</label>
+                    <input type="text" name="categories" class="form-control" placeholder="Categories" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="kelengkapan" class="form-label">KELENGKAPAN</label>
+                    <input type="text" name="kelengkapan" class="form-control" placeholder="Kelengkapan" required>
+                </div>
+
+                <button onclick="addData()" class="btn btn-primary">Submit</button>
+            </form>
+
 
             <!--Form GOOD ISSUE-->
             <form action="process.php" method="post" id="goodIssueForm" class="hidden">
@@ -435,8 +495,8 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
                 <h2>Biodata</h2>
 
                 <div class="mb-3">
-                    <label for="card_uid" class="form-label">RFID</label>
-                    <input type="text" name="card_uid" placeholder="....." required>
+                    <label for="rfid_tag" class="form-label">RFID</label>
+                    <input type="text" name="rfid_tag" placeholder="....." required>
                 </div>
 
                 <div class="mb-3">
