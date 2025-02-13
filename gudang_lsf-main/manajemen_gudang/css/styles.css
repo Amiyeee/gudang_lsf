@@ -45,7 +45,35 @@ nav ul li a:hover {
 
 h2 {
     text-align: center;
+    overflow-x: auto;
 }
+
+/*H3 untuk yang ada di data tools */
+
+        .title-main {
+            text-align: center;
+            width: 100%;
+        }
+
+        .title-container {
+            display: flex;
+            justify-content: space-between;
+            /* Bagi dua ruang antara judul */
+            align-items: center;
+            /* Pastikan sejajar tengah secara vertikal */
+            width: 100%;
+            margin-bottom: 10px;
+            /* Jarak dari tabel */
+        }
+
+        .title-left,
+        .title-right {
+            flex: 1;
+            text-align: center;
+            /* Pastikan judul ada di tengah */
+            font-size: 16px;
+            font-weight: bold;
+        }
 
 main {
     flex: 1;
@@ -75,33 +103,49 @@ table th {
 }
 
 /* Untuk membuat tabel dengan header tetap */
+
+.container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
 .table-container {
-    overflow-x: auto; /* Mengaktifkan scroll horizontal */
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 400px; /* Sesuaikan tinggi maksimum tabel */
     margin-top: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
 table {
-    table-layout: auto;
+    width: 100%;
     border-collapse: collapse;
-    width: 100%; /* Opsional */
+    table-layout: auto;
+}
+
+.thead-fixed {
+    position: sticky;
+    top: 0;
+    background-color: #007BFF;
+    color: white;
+    z-index: 2;
+}
+
+.tbody-scroll {
+    display: block;
+    max-height: 350px;
+    overflow-y: auto;
+    width: 100%;
 }
 
 table th, table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
-    white-space: nowrap; /* Pastikan teks tidak terpotong */
-}
-
-
-table th {
-    background-color: #007BFF;
-    color: white;
-    position: sticky;
-    top: 0; /* Header tetap di atas saat scroll */
-    z-index: 1;
+    white-space: nowrap;
 }
 
 .table-container::-webkit-scrollbar {
@@ -116,6 +160,7 @@ table th {
 .table-container::-webkit-scrollbar-thumb:hover {
     background-color: #555;
 }
+
 
 /* Gaya untuk tombol */
 .button-container {
@@ -266,70 +311,72 @@ table th {
 }
 
 
-    .hidden {
-        display: none;
-    }
+.hidden {
+    display: none;
+}
+
+
+.upload-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 300px;
+    position: relative;
+}
+
+#drop-area.dragover {
+    border-color: #4F46E5;
+    background-color: #f3f3ff;
+}
+
+#actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submitBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#cancelBtn {
+    background-color: #f44336;
+    color: white;
+}
+
+#loading {
+    display: none;
+    margin-top: 15px;
+}
+
+.success-box {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.success-box img {
+    width: 50px;
+    height: 50px;
+}
+
+.success-box button {
+    margin-top: 10px;
+}
+
     
-
-    .upload-container {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    #drop-area {
-        border: 2px dashed #ccc;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 10px auto;
-        width: 300px;
-        position: relative;
-    }
-
-    #drop-area.dragover {
-        border-color: #4F46E5;
-        background-color: #f3f3ff;
-    }
-
-    #actions {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 15px;
-    }
-
-    #actions button {
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    #submitBtn {
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    #cancelBtn {
-        background-color: #f44336;
-        color: white;
-    }
-
-    #loading {
-        display: none;
-        margin-top: 15px;
-    }
-
-    .success-box {
-        display: none;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .success-box img {
-        width: 50px;
-        height: 50px;
-    }
-
-    .success-box button {
-        margin-top: 10px;
-    }
