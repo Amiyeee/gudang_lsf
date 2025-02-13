@@ -44,6 +44,7 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
                 <option value="">-- Pilih Form --</option>
                 <option value="dataStockForm">Data Stock</option>
                 <option value="dataToolsForm">Data Tools</option>
+                <option value="peminjamanForm">Peminjaman</option>
                 <option value="goodIssueForm">Good Issue</option>
                 <option value="lpbForm">LPB</option>
                 <option value="biodataForm">Biodata</option>
@@ -179,6 +180,129 @@ $UIDresult = $_POST['UID'] ?? $UIDresult ?? '';
             <form action="process.php" method="post" id="dataToolsForm" class="hidden">
                 <input type="hidden" name="category" value="data_tools">
                 <h2>Data Tools</h2>
+
+                <div class="mb-3">
+                    <label for="data1" class="form-label">Data 1</label>
+                    <input type="text" name="data1" class="form-control" placeholder="Data 1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="data2" class="form-label">Data 2</label>
+                    <input type="text" name="data2" class="form-control" placeholder="Data 2" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="no" class="form-label">No</label>
+                    <input type="text" name="no" class="form-control" placeholder="No" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tgl_masuk_lsf" class="form-label">TGL MASUK LSF</label>
+                    <input type="date" name="tgl_masuk_lsf" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="durasi_lsf" class="form-label">Durasi di LSF</label>
+                    <input type="text" name="durasi_lsf" class="form-control" placeholder="Durasi di LSF" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nama_alat" class="form-label">NAMA ALAT</label>
+                    <input type="text" name="nama_alat" class="form-control" placeholder="Nama Alat" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="merk_type_size" class="form-label">MERK / TYPE / SIZE</label>
+                    <input type="text" name="merk_type_size" class="form-control" placeholder="Merk / Type / Size" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="kapasitas" class="form-label">CAPASITAS</label>
+                    <input type="text" name="kapasitas" class="form-control" placeholder="Kapasitas" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="code_id" class="form-label">CODE (ID NUMBER)</label>
+                    <input type="text" name="code_id" class="form-control" placeholder="Code (ID Number)" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="serial_no" class="form-label">SERIAL NO.</label>
+                    <input type="text" name="serial_no" class="form-control" placeholder="Serial No." required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="po_no" class="form-label">PO.NO</label>
+                    <input type="text" name="po_no" class="form-control" placeholder="PO.No" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="penerima" class="form-label">PENERIMA</label>
+                    <input type="text" name="penerima" class="form-control" placeholder="Penerima" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="jabatan" class="form-label">JABATAN</label>
+                    <input type="text" name="jabatan" class="form-control" placeholder="Jabatan" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="lokasi_group" class="form-label">LOKASI/GROUP</label>
+                    <input type="text" name="lokasi_group" class="form-control" placeholder="Lokasi/Group" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tgl_pinjam" class="form-label">TGL PINJAM</label>
+                    <input type="date" name="tgl_pinjam" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tgl_service" class="form-label">TGL SERVICE</label>
+                    <input type="date" name="tgl_service" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="kondisi" class="form-label">KONDISI</label>
+                    <input type="text" name="kondisi" class="form-control" placeholder="Kondisi" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="qty" class="form-label">QTY</label>
+                    <input type="number" name="qty" class="form-control" placeholder="Qty" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="satuan" class="form-label">SATUAN</label>
+                    <input type="text" name="satuan" class="form-control" placeholder="Satuan" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="status" class="form-label">STATUS</label>
+                    <input type="text" name="status" class="form-control" placeholder="Status" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="keterangan" class="form-label">KETERANGAN</label>
+                    <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="categories" class="form-label">CATEGORIES</label>
+                    <input type="text" name="categories" class="form-control" placeholder="Categories" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="kelengkapan" class="form-label">KELENGKAPAN</label>
+                    <input type="text" name="kelengkapan" class="form-control" placeholder="Kelengkapan" required>
+                </div>
+
+                <button onclick="addData()" class="btn btn-primary">Submit</button>
+            </form>
+
+            <!--Form Peminjaman-->
+            <form action="process.php" method="post" id="peminjamanForm" class="hidden">
+                <input type="hidden" name="category" value="peminjaman">
+                <h2>Peminjaman</h2>
 
                 <div class="mb-3">
                     <label for="data1" class="form-label">Data 1</label>
