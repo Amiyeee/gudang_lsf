@@ -38,7 +38,7 @@ try {
             <h2>Good Issue</h2>
             <div class="table-container">
                 <table>
-                    <thead>
+                    <thead class="thead-fixed">
                         <tr>
                             <th>DATE</th>
                             <th>RFID</th>
@@ -65,7 +65,7 @@ try {
                             <th>Keterangan</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class=".tbody-scroll">
                         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
                             <tr>
                                 <td><?php echo !empty($row['date']) ? date("Y-m-d H:i:s", strtotime($row['date'])) : 'N/A'; ?></td>
