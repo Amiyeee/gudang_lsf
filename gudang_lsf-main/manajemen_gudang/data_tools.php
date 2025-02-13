@@ -6,32 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Tools</title>
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        .title-main {
-            text-align: center;
-            width: 100%;
-        }
-
-        .title-container {
-            display: flex;
-            justify-content: space-between;
-            /* Bagi dua ruang antara judul */
-            align-items: center;
-            /* Pastikan sejajar tengah secara vertikal */
-            width: 100%;
-            margin-bottom: 10px;
-            /* Jarak dari tabel */
-        }
-
-        .title-left,
-        .title-right {
-            flex: 1;
-            text-align: center;
-            /* Pastikan judul ada di tengah */
-            font-size: 16px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
@@ -63,7 +37,7 @@
                 <!-- Tabel Pertama -->
                 <div class="table-container">
                     <table>
-                        <thead>
+                        <thead class="thead-fixed">
                             <tr>
                                 <th>Data 1</th>
                                 <th>Data 2</th>
@@ -92,13 +66,16 @@
 
                             </tr>
                         </thead>
+                        <tbody class=".tbody-scroll">
+                           
+                        </tbody>
                     </table>
                 </div>
 
                 <!-- Tabel Kedua -->
                 <div class="table-container">
                     <table>
-                        <thead>
+                        <thead class="thead-fixed">
                             <tr>
                                 <th>Data 1</th>
                                 <th>Data 2</th>
@@ -127,8 +104,8 @@
 
                             </tr>
                         </thead>
-                        <tbody>
-
+                        <tbody class=".tbody-scroll">
+                          
                         </tbody>
                     </table>
                 </div>
