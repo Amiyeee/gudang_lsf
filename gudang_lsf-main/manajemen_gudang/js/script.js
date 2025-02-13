@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (document.getElementById("dataToolsForm")) {
         handleFormSubmit("dataToolsForm", "#dataToolsTable", "dataTools");
     }
+    if (document.getElementById("peminjamanForm")) {
+        handleFormSubmit("peminjamanForm", "#peminjamanTable", "peminjaman");
+    }
     if (document.getElementById("goodIssueForm")) {
         handleFormSubmit("goodIssueForm", "#goodIssueTable", "goodIssue");
     }
@@ -46,6 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (document.getElementById("dataToolsTable")) {
         loadTableData("#dataToolsTable", "dataTools");
+    }
+    if (document.getElementById("peminjamanTable")) {
+        loadTableData("#peminjamanTable", "peminjaman");
     }
     if (document.getElementById("goodIssueTable")) {
         loadTableData("#goodIssueTable", "goodIssue");
