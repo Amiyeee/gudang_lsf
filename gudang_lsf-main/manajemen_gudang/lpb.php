@@ -34,7 +34,7 @@ $stmt = $pdo->query($query);
             <h2>LPB</h2>
             <div class="table-container">
                 <table border="1">
-                    <thead>
+                    <thead class="thead-fixed">
                         <tr>
                             <th>No Pengiriman</th>
                             <th>Item Code</th>
@@ -54,7 +54,7 @@ $stmt = $pdo->query($query);
                             <th>Remarks</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class=".tbody-scroll">
                         <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($row['no_pengiriman']); ?></td>
