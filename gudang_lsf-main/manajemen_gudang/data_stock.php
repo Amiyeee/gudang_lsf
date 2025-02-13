@@ -34,7 +34,7 @@ $stmt = $conn->query($query);
             <h2>Data Stock</h2>
             <div class="table-container">
                 <table>
-                    <thead>
+                    <thead class="thead-fixed">
                         <tr>
                             <th>NO</th>
                             <th>RCVD DATE</th>
@@ -60,7 +60,7 @@ $stmt = $conn->query($query);
                             <th>KET</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class=".tbody-scroll">
                         <?php 
                         $no = 1;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
