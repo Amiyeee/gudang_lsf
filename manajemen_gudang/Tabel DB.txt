@@ -1,0 +1,89 @@
+CREATE TABLE data_stock (
+    id SERIAL PRIMARY KEY,
+    rcvd_date DATE,
+    item_code VARCHAR(50),
+    item_name VARCHAR(255),
+    free_text TEXT,
+    qty_rcvd INT,
+    unit VARCHAR(20),
+    po_no VARCHAR(50),
+    apply_to VARCHAR(100),
+    pc_number VARCHAR(50),
+    project_name VARCHAR(255),
+    doc_no VARCHAR(50),
+    `from` VARCHAR(100),
+    wbs_code VARCHAR(50),
+    location VARCHAR(100),
+    remark TEXT,
+    status VARCHAR(50),
+    qty_issued INT,
+    balance INT,
+    pic VARCHAR(100),
+    whs VARCHAR(50),
+    ket TEXT
+);
+
+CREATE TABLE data_tools (
+    no VARCHAR(50),
+    tgl_masuk_lsf DATE,
+    durasi_di_lsf VARCHAR(50),
+    nama_alat VARCHAR(255),
+    merk_type_size VARCHAR(255),
+    kapasitas VARCHAR(100),
+    code_id VARCHAR(50),
+    serial_no VARCHAR(100),
+    po_no VARCHAR(50),
+    penerima VARCHAR(100),
+    jabatan VARCHAR(100),
+    lokasi_group VARCHAR(100),
+    tgl_pinjam DATE,
+    tgl_service DATE,
+    kondisi VARCHAR(100),
+    qty INT,
+    satuan VARCHAR(50),
+    kebutuhan_sparepart TEXT,
+    keterangan TEXT,
+    categories VARCHAR(100),
+    kelengkapan VARCHAR(100),
+    status VARCHAR(50)
+);
+
+
+CREATE TABLE good_issue (
+    id SERIAL PRIMARY KEY,
+    date DATETIME,
+    card_uid VARCHAR(50),
+    item_code VARCHAR(50),
+    item_name VARCHAR(255),
+    qty INT,
+    unit VARCHAR(20),
+    pc_no VARCHAR(50),
+    bpm VARCHAR(50),
+    rcvd_by VARCHAR(100),
+    foreman_group VARCHAR(100),
+    freetext TEXT,
+    remarks TEXT,
+    status VARCHAR(50),
+    wbs_code VARCHAR(50),
+    no_gi_itr VARCHAR(50),
+    posting_date DATE,
+    whse VARCHAR(50),
+    account_code VARCHAR(50),
+    project VARCHAR(255),
+    lokasi VARCHAR(100),
+    dep VARCHAR(100),
+    jenis_pengerjaan VARCHAR(100),
+    keterangan TEXT
+);
+
+CREATE TABLE biodata (
+    id SERIAL PRIMARY KEY,
+    card_uid VARCHAR(50),
+    nama VARCHAR(100),
+    jabatan VARCHAR(50),
+    alamat TEXT,
+    no_hp VARCHAR(15),
+);
+
+
+

@@ -1,0 +1,285 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f3f3f3, #e0e0e0);
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Mencegah overflow horizontal */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+header {
+    background: #007bff;
+    color: white;
+    padding: 15px 0;
+    font-size: 24px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+header:hover {
+    background: #0056b3;
+}
+
+/* Navigation */
+nav {
+    padding-top: 15px; /* Menurunkan seluruh navbar */
+}
+
+nav ul {
+    list-style: none;
+    padding: 10px 0; /* Menambahkan padding agar turun */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 16px;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background: #ffcc00;
+    color: black;
+}
+
+
+/* Main Content */
+main {
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-out;
+    overflow-x: auto; /* Memastikan konten utama tidak meluber */
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+    max-height: 400px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Mencegah melebarnya kontainer */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Pastikan tabel menyesuaikan konten */
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+table th {
+    background-color: #007BFF;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+tbody tr:hover {
+    background: #ffeb99;
+    transition: 0.3s;
+}
+
+/* Buttons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Upload Container */
+.upload-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.upload-box {
+    border: 2px dashed #ccc;
+    padding: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+    background: #e9f5ff;
+}
+
+.upload-box:hover {
+    border-color: #4F46E5;
+    background-color: #f3f3ff;
+}
+
+/* Edit Button */
+.edit-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+    background-color: #218838;
+}
+
+/* Tombol logout di pojok kanan */
+.logout-btn {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: 0.3s;
+    position: absolute;
+    right: 20px;
+    top: 50%; /* Posisikan di tengah */
+    transform: translateY(-50%); /* Sesuaikan agar benar-benar sejajar */
+    display: flex;
+    align-items: center;
+}
+
+
+.logout-btn:hover {
+    color: red;
+    /* Efek hover */
+}
+
+main {
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.container {
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 60%;
+}
+
+.dropzone {
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    padding: 30px;
+    background: #e9f5ff;
+}
+
+#preview,
+#buttons {
+    display: none;
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn-send {
+    background: #28a745;
+    color: white;
+}
+
+.btn-cancel {
+    background: #dc3545;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    margin-top: auto;
+    text-align: center;
+}
