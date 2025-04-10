@@ -1,0 +1,143 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <DS1302RTC.h>
+#include <TimeLib.h>
+
+// OLED
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+// RTC DS1302
+const int rtcCE = 8;
+const int rtcIO = 7;
+const int rtcSCLK = 6;
+DS1302RTC RTC(rtcCE, rtcIO, rtcSCLK);
+
+// Buzzer & LED
+const int buzzerPin = 9;
+const int ledPin = 10;
+
+bool sudahDirayakan = false;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+
+  // Inisialisasi OLED
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    for (;;);
+  }
+
+  // Mulai RTC
+  RTC.halt(false);
+  RTC.writeProtect(false);
+
+  display.clearDisplay();
+  display.display();
+  randomSeed(analogRead(0));
+}
+
+void loop() {
+  tmElements_t waktu;
+  RTC.read(waktu);
+
+  // Tampilkan waktu sekarang di Serial
+  Serial.print(waktu.Day);
+  Serial.print("/");
+  Serial.print(waktu.Month);
+  Serial.print("/");
+  Serial.print(tmYearToCalendar(waktu.Year));
+  Serial.print(" ");
+  Serial.print(waktu.Hour);
+  Serial.print(":");
+  Serial.print(waktu.Minute);
+  Serial.print(":");
+  Serial.println(waktu.Second);
+
+  // Ulang tahun: 10 April, jam 08:00
+  if (waktu.Day == 10 && waktu.Month == 4 && waktu.Hour == 8 && !sudahDirayakan) {
+    rayakanUlangTahun();
+    sudahDirayakan = true; // Supaya hanya satu kali
+  }
+
+  delay(1000);
+}
+
+void rayakanUlangTahun() {
+  digitalWrite(ledPin, HIGH);
+  tone(buzzerPin, 1000); // Bunyikan buzzer
+  delay(500);
+  noTone(buzzerPin);
+
+  animasiUlangTahun();
+
+  digitalWrite(ledPin, LOW);
+}
+
+// ========================= ANIMASI ==============================
+
+void animasiUlangTahun() {
+  int kueY = SCREEN_HEIGHT;
+
+  while (kueY > 20) {
+    display.clearDisplay();
+    gambarKue(45, kueY);
+    gambarTulisan(kueY + 20);
+    gambarKembangApiAcak(2);
+    display.display();
+    kueY -= 2;
+    delay(100);
+  }
+
+  for (int i = 0; i < 5; i++) {
+    display.clearDisplay();
+    gambarKue(45, kueY);
+    gambarTulisan(kueY + 20);
+    gambarKembangApiAcak(4);
+    display.display();
+    delay(300);
+  }
+}
+
+void gambarKue(int x, int y) {
+  display.fillRect(x, y, 38, 10, SSD1306_WHITE);
+  display.fillRect(x + 5, y - 10, 28, 8, SSD1306_WHITE);
+  display.fillRect(x + 18, y - 18, 2, 6, SSD1306_WHITE);
+  display.drawPixel(x + 19, y - 20, SSD1306_WHITE);
+
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_BLACK);
+  display.setCursor(x + 9, y - 8);
+  display.print("HBD");
+}
+
+void gambarTulisan(int y) {
+  if (y < SCREEN_HEIGHT - 8) {
+    display.setTextSize(1);
+    display.setTextColor(SSD1306_WHITE);
+    int centerX = (SCREEN_WIDTH - (18 * 6)) / 2;
+    display.setCursor(centerX, y);
+    display.print("Selamat Ulang Tahun!");
+  }
+}
+
+void gambarKembangApiAcak(int jumlah) {
+  for (int i = 0; i < jumlah; i++) {
+    int cx = random(10, SCREEN_WIDTH - 10);
+    int cy = random(5, 25);
+    gambarKembangApi(cx, cy, 6);
+  }
+}
+
+void gambarKembangApi(int x, int y, int size) {
+  int percikan = 8;
+  for (int i = 0; i < percikan; i++) {
+    float angle = 2 * PI * i / percikan;
+    int x2 = x + cos(angle) * size;
+    int y2 = y + sin(angle) * size;
+    display.drawLine(x, y, x2, y2, SSD1306_WHITE);
+  }
+}
